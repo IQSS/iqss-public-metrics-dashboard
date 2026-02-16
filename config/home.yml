@@ -1,0 +1,102 @@
+- name: Home
+  slug: home
+  width: wide
+  columns:
+    - size: full
+      widgets:
+        - type: html
+          hide-header: true
+          css-class: iqss-frameless
+          source: |
+            <section class="iqss-hero">
+              <img class="iqss-hero__img" src="/assets/images/iqss.jpg" alt="Institute for Quantitative Social Science (IQSS)">
+              <div class="iqss-hero__overlay">
+                <h1>IQSS Public Metrics</h1>
+                <p>
+                  We work hard to make social science research better, faster, and more collaborative.
+                  To keep our efforts on track, we collect metrics, which you can explore in the categories below.
+                </p>
+                <p class="iqss-disclaimer">
+                  This is an example Glance-based rebuild using static fake data.
+                </p>
+              </div>
+            </section>
+
+            <section class="iqss-tile-grid">
+              <a class="iqss-tile" href="/overview">
+                <div class="iqss-tile__media">
+                  <img src="/assets/images/overview.jpg" alt="">
+                  <div class="iqss-tile__title">Our year in numbers</div>
+                </div>
+                <div class="iqss-tile__body">
+                  <p>Budget overview and highlighted metrics from our work this year.</p>
+                  <div class="iqss-tile__cta">Open</div>
+                </div>
+              </a>
+
+              <a class="iqss-tile" href="/business-operations">
+                <div class="iqss-tile__media">
+                  <img src="/assets/images/bo.jpg" alt="">
+                  <div class="iqss-tile__title">Business Operations</div>
+                </div>
+                <div class="iqss-tile__body">
+                  <p>Administrative and financial support, plus general services for the IQSS community.</p>
+                  <div class="iqss-tile__cta">Open</div>
+                </div>
+              </a>
+
+              <a class="iqss-tile" href="/research-services">
+                <div class="iqss-tile__media">
+                  <img src="/assets/images/research-services.jpg" alt="">
+                  <div class="iqss-tile__title">Research Services</div>
+                </div>
+                <div class="iqss-tile__body">
+                  <p>High-touch technical solutions for researchers in the Harvard community.</p>
+                  <div class="iqss-tile__cta">Open</div>
+                </div>
+              </a>
+
+              <a class="iqss-tile" href="/dataverse">
+                <div class="iqss-tile__media">
+                  <img src="/assets/images/dataverse.jpg" alt="">
+                  <div class="iqss-tile__title">Dataverse</div>
+                </div>
+                <div class="iqss-tile__body">
+                  <p>Open source research data repository platform with installations worldwide.</p>
+                  <div class="iqss-tile__cta">Open</div>
+                </div>
+              </a>
+
+              <a class="iqss-tile" href="/it-support">
+                <div class="iqss-tile__media">
+                  <img src="/assets/images/css.jpg" alt="">
+                  <div class="iqss-tile__title">IT Support</div>
+                </div>
+                <div class="iqss-tile__body">
+                  <p>Desktop IT support plus hardware and software assistance for affiliates.</p>
+                  <div class="iqss-tile__cta">Open</div>
+                </div>
+              </a>
+
+              <a class="iqss-tile" href="/research-computing">
+                <div class="iqss-tile__media">
+                  <img src="/assets/images/rc.jpg" alt="">
+                  <div class="iqss-tile__title">Research Computing</div>
+                </div>
+                <div class="iqss-tile__body">
+                  <p>Cluster usage, jobs, node hours, and other compute platform metrics.</p>
+                  <div class="iqss-tile__cta">Open</div>
+                </div>
+              </a>
+
+              <a class="iqss-tile" href="/scientific-programs">
+                <div class="iqss-tile__media">
+                  <img src="/assets/images/sp.jpg" alt="">
+                  <div class="iqss-tile__title">Scientific Programs</div>
+                </div>
+                <div class="iqss-tile__body">
+                  <p>Faculty-led programs and events across qualitative and quantitative social science.</p>
+                  <div class="iqss-tile__cta">Open</div>
+                </div>
+              </a>
+            </section>

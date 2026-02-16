@@ -1,0 +1,39 @@
+server:
+  assets-path: ./assets
+
+branding:
+  app-name: "IQSS Metrics (Glance Example)"
+  logo-url: /assets/images/logo.png
+  favicon-url: /assets/favicon.png
+  app-icon-url: /assets/favicon.png
+  app-background-color: "#ffffff"
+  custom-footer: |
+    <p>
+      Example dashboard built with <a href="https://github.com/glanceapp/glance" target="_blank" rel="noreferrer">Glance</a>.
+      Data shown is fake and static.
+    </p>
+
+theme:
+  light: true
+  background-color: 0 0 100
+  # IQSS orange
+  primary-color: 25 100 36
+  # Harvard red
+  negative-color: 345 82 35
+  contrast-multiplier: 1.05
+
+  disable-picker: true
+
+  # Note: assets are cached by the browser, changes to the CSS file
+  # will not be reflected until the browser cache is cleared (Ctrl+F5)
+  custom-css-file: /assets/user.css
+
+pages:
+  - $include: home.yml
+  - $include: overview.yml
+  - $include: business-operations.yml
+  - $include: research-services.yml
+  - $include: dataverse.yml
+  - $include: it-support.yml
+  - $include: research-computing.yml
+  - $include: scientific-programs.yml

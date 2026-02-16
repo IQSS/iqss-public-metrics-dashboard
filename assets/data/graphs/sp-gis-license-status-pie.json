@@ -1,0 +1,10 @@
+{
+  "type": "pie",
+  "aria_label": "License requests by status (fake data)",
+  "slices": [
+    { "label": "Approved", "value": 340, "color": "#215990" },
+    { "label": "Pending", "value": 90, "color": "#B84D00" },
+    { "label": "Needs info", "value": 42, "color": "#808285" },
+    { "label": "Denied", "value": 18, "color": "#A41034" }
+  ]
+}

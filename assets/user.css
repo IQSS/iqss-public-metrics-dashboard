@@ -1,0 +1,572 @@
+/* IQSS Glance example styling inspired by the legacy IQSS metrics dashboard:
+   https://iqss.github.io/iqss-metrics-dashboard/
+*/
+
+/* Self-hosted fonts (avoid runtime calls to Google Fonts). */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/montserrat-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/assets/fonts/montserrat-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/assets/fonts/montserrat-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Questrial';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/questrial-latin.woff2') format('woff2');
+}
+
+:root {
+  --iqss-lighter-orange: #d16103;
+  --iqss-orange: #b84d00;
+  --iqss-dark-blue: #152844;
+  --iqss-grey: #555555;
+  --iqss-lighter-blue: #215990;
+  --harvard-red: #a41034;
+}
+
+/* Typography */
+body {
+  font-family: 'Montserrat', Calibri, 'Trebuchet MS', sans-serif;
+  font-variant-ligatures: normal;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Questrial', Arial, Helvetica, sans-serif;
+}
+
+/* Links (legacy dashboard uses blue links + dark-blue hover) */
+a {
+  color: var(--iqss-lighter-blue);
+}
+
+a:focus,
+a:hover {
+  color: var(--iqss-dark-blue);
+  text-decoration: underline;
+}
+
+/* Glance nav -> IQSS underline nav */
+.logo {
+  border-right: none;
+  padding-right: 0;
+}
+
+.nav-item {
+  font-family: 'Questrial', Arial, Helvetica, sans-serif;
+  text-align: center;
+  border-bottom: 1px solid var(--iqss-orange);
+  /* Desktop nav is full-width with equally sized tabs. */
+  padding-inline: 1.2rem;
+}
+
+.header .nav {
+  gap: 0;
+  width: 100%;
+}
+
+/* Equal-width desktop tabs (avoid impacting the mobile nav list). */
+.header .nav .nav-item {
+  flex: 1 1 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: normal;
+  white-space: normal;
+}
+
+.nav-item:not(.nav-item-current):hover {
+  border-bottom-color: var(--iqss-lighter-orange);
+}
+
+.nav-item.nav-item-current {
+  border-bottom-color: var(--iqss-orange);
+  border-bottom-width: 4px;
+  color: var(--iqss-dark-blue);
+}
+
+/* Widget titles: don't shout */
+.uppercase {
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+}
+
+.widget-header h2 {
+  color: var(--iqss-dark-blue);
+  font-weight: 700;
+}
+
+/* Frameless utility (used for page headers + home hero) */
+.iqss-frameless .widget-content:not(.widget-content-frameless),
+.iqss-frameless .widget-content-frame {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+/* Card top borders similar to legacy dashboard */
+.iqss-card .widget-content:not(.widget-content-frameless),
+.iqss-card .widget-content-frame {
+  border-top-width: 3px;
+}
+
+.iqss-card-primary .widget-content:not(.widget-content-frameless),
+.iqss-card-primary .widget-content-frame {
+  border-top-color: var(--iqss-dark-blue);
+}
+
+.iqss-card-secondary .widget-content:not(.widget-content-frameless),
+.iqss-card-secondary .widget-content-frame {
+  border-top-color: var(--iqss-orange);
+}
+
+.iqss-card-tertiary .widget-content:not(.widget-content-frameless),
+.iqss-card-tertiary .widget-content-frame {
+  border-top-color: var(--iqss-grey);
+}
+
+/* Page headers */
+.iqss-page-header {
+  margin-bottom: 0.5rem;
+}
+
+.iqss-page-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  color: var(--iqss-dark-blue);
+}
+
+.iqss-page-header p {
+  color: var(--iqss-grey);
+  max-width: 90ch;
+}
+
+.iqss-disclaimer {
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+  color: var(--iqss-grey);
+}
+
+/* Home hero */
+.iqss-hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+}
+
+.iqss-hero__img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+}
+
+.iqss-hero__overlay {
+  position: absolute;
+  inset: 0;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: linear-gradient(
+    180deg,
+    rgba(21, 40, 68, 0.05) 0%,
+    rgba(21, 40, 68, 0.75) 100%
+  );
+}
+
+.iqss-hero__overlay h1 {
+  color: #ffffff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.65);
+  margin-bottom: 0.6rem;
+}
+
+.iqss-hero__overlay p {
+  color: rgba(255, 255, 255, 0.95);
+  max-width: 90ch;
+}
+
+.iqss-hero__overlay .iqss-disclaimer {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Home tiles */
+.iqss-tile-grid {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
+
+.iqss-tile {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-widget-background);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--color-widget-content-border);
+  box-shadow: 0px 3px 0px 0px hsl(var(--bghs), calc(var(--scheme) (var(--scheme) var(--bgl)) - 0.5%));
+  overflow: hidden;
+  transition: transform 120ms ease;
+}
+
+.iqss-tile:hover {
+  transform: translateY(-2px);
+}
+
+.iqss-tile__media {
+  position: relative;
+}
+
+.iqss-tile__media img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.iqss-tile__title {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 1rem;
+  color: #ffffff;
+  font-family: 'Questrial', Arial, Helvetica, sans-serif;
+  font-size: 2.1rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.75);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.45) 100%);
+}
+
+.iqss-tile__body {
+  padding: 1.2rem 1.2rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  color: var(--iqss-grey);
+}
+
+.iqss-tile__cta {
+  align-self: flex-start;
+  background: var(--iqss-orange);
+  color: #ffffff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.iqss-tile:hover .iqss-tile__cta {
+  background: var(--iqss-lighter-orange);
+}
+
+/* KPI grid */
+.iqss-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 14px;
+}
+
+.iqss-kpi-card {
+  border: 1px solid var(--color-widget-content-border);
+  border-radius: var(--border-radius);
+  padding: 1.1rem 1.2rem;
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.iqss-kpi-card--primary {
+  border-top: 3px solid var(--iqss-dark-blue);
+}
+
+.iqss-kpi-card--secondary {
+  border-top: 3px solid var(--iqss-orange);
+}
+
+.iqss-kpi-card--tertiary {
+  border-top: 3px solid var(--iqss-grey);
+}
+
+.iqss-kpi-label {
+  font-size: 1.2rem;
+  color: var(--iqss-grey);
+}
+
+.iqss-kpi-value {
+  margin-top: 0.2rem;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--iqss-dark-blue);
+  line-height: 1.25;
+}
+
+.iqss-kpi-unit {
+  margin-left: 0.4rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--iqss-grey);
+}
+
+.iqss-kpi-delta {
+  margin-top: 0.4rem;
+  font-size: 1.2rem;
+}
+
+/* Trend list (CSS-only bar chart) */
+.iqss-trend-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.iqss-trend-item {
+  display: grid;
+  grid-template-columns: 70px 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.iqss-trend-label {
+  font-size: 1.2rem;
+  color: var(--iqss-grey);
+}
+
+.iqss-trend-bar {
+  height: 9px;
+  background: rgba(33, 89, 144, 0.12);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.iqss-trend-bar-fill {
+  height: 100%;
+  background: var(--iqss-orange);
+}
+
+.iqss-trend-value {
+  font-size: 1.2rem;
+  color: var(--iqss-dark-blue);
+  font-weight: 700;
+}
+
+/* Notes */
+.iqss-notes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: var(--iqss-grey);
+  padding-left: 1.2rem;
+  list-style: disc;
+}
+
+.iqss-updated {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  color: var(--iqss-grey);
+}
+
+/* No-JS graph widgets (server-rendered HTML/CSS/SVG) */
+.iqss-chart-wrap {
+  position: relative;
+  min-height: 320px;
+}
+
+.iqss-empty {
+  color: var(--iqss-grey);
+  font-size: 1.2rem;
+}
+
+.iqss-graph {
+  --iqss-graph-stroke: var(--iqss-orange);
+  --iqss-graph-fill: rgba(184, 77, 0, 0.18);
+  color: var(--iqss-dark-blue);
+}
+
+.iqss-graph--line {
+  --iqss-graph-stroke: #B84D00;
+  --iqss-graph-fill: transparent;
+}
+
+.iqss-graph--area {
+  --iqss-graph-stroke: #215990;
+  --iqss-graph-fill: #215990;
+}
+
+.iqss-graph--bar {
+  --iqss-graph-stroke: #B84D00;
+}
+
+.iqss-graph-plot {
+  position: relative;
+  height: 250px;
+  border-bottom: 1px solid rgba(128, 130, 133, 0.35);
+  border-left: 1px solid rgba(128, 130, 133, 0.35);
+  background: linear-gradient(
+    to top,
+    rgba(128, 130, 133, 0.07) 0%,
+    rgba(128, 130, 133, 0.03) 46%,
+    rgba(128, 130, 133, 0.01) 100%
+  );
+}
+
+.iqss-graph-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.iqss-graph-grid line {
+  stroke: rgba(128, 130, 133, 0.3);
+  stroke-width: 0.3;
+}
+
+.iqss-graph-line {
+  fill: none;
+  stroke: var(--iqss-graph-stroke);
+  stroke-width: 1.4;
+  vector-effect: non-scaling-stroke;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.iqss-graph-area {
+  fill: var(--iqss-graph-fill);
+  fill-opacity: 0.18;
+}
+
+.iqss-graph-x {
+  margin-top: 0.8rem;
+  display: grid;
+  gap: 0.3rem;
+}
+
+.iqss-graph-x span {
+  text-align: center;
+  font-size: 1rem;
+  color: var(--iqss-grey);
+}
+
+.iqss-barlist {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.iqss-barlist-item {
+  display: grid;
+  grid-template-columns: minmax(120px, 220px) 1fr auto;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.iqss-barlist-label {
+  color: var(--iqss-grey);
+  font-size: 1.15rem;
+}
+
+.iqss-barlist-bar {
+  height: 12px;
+  background: rgba(128, 130, 133, 0.16);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.iqss-barlist-fill {
+  height: 100%;
+  background: var(--iqss-graph-stroke);
+}
+
+.iqss-graph--bar .iqss-barlist-fill {
+  opacity: 0.85;
+}
+
+.iqss-barlist-value {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--iqss-dark-blue);
+}
+
+.iqss-pie-grid {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 1.2rem;
+  align-items: center;
+}
+
+.iqss-pie {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: var(--iqss-pie-gradient);
+  border: 4px solid #fff;
+  box-shadow: inset 0 0 0 1px rgba(128, 130, 133, 0.25);
+}
+
+.iqss-pie-legend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.iqss-pie-legend-item {
+  display: grid;
+  grid-template-columns: 12px minmax(80px, 1fr) auto auto;
+  gap: 0.5rem;
+  align-items: center;
+  color: var(--iqss-grey);
+  font-size: 1.1rem;
+}
+
+.iqss-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+.iqss-pie-legend-value {
+  color: var(--iqss-dark-blue);
+  font-weight: 700;
+}
+
+.iqss-pie-legend-pct {
+  color: var(--iqss-grey);
+}
+
+@media (max-width: 960px) {
+  .iqss-pie-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .iqss-barlist-item {
+    grid-template-columns: minmax(96px, 170px) 1fr auto;
+  }
+}

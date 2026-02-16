@@ -1,0 +1,26 @@
+{
+  "updated": "2026-02-01",
+  "kpis": [
+    { "label": "Active users", "value": 510, "unit": "", "format": "int", "accent": "primary", "delta_pct": 8.8 },
+    { "label": "Jobs submitted", "value": 41200, "unit": "", "format": "int", "accent": "secondary", "delta_pct": 14.3 },
+    { "label": "Jobs completed", "value": 40110, "unit": "", "format": "int", "accent": "primary", "delta_pct": 13.7 },
+    { "label": "Node-hours", "value": 910000, "unit": "", "format": "int", "accent": "secondary", "delta_pct": 22.0 },
+    { "label": "GPU-hours", "value": 178000, "unit": "", "format": "int", "accent": "tertiary", "delta_pct": 31.5 },
+    { "label": "Data stored", "value": 1.4, "unit": "PB", "format": "float", "accent": "primary", "delta_pct": 6.2 }
+  ],
+  "trend_max": 190000,
+  "trend": [
+    { "label": "Sep", "value": 140000 },
+    { "label": "Oct", "value": 155000 },
+    { "label": "Nov", "value": 150000 },
+    { "label": "Dec", "value": 170000 },
+    { "label": "Jan", "value": 190000 },
+    { "label": "Feb", "value": 185000 }
+  ],
+  "notes": [
+    { "text": "All values are fake; they exist to demonstrate Glance rendering, not to be accurate." },
+    { "text": "The original IQSS dashboard includes richer visualizations; Glance can embed iframes or custom HTML if needed." },
+    { "text": "If you expose real data, keep it public-safe and aggregate appropriately." }
+  ]
+}
+

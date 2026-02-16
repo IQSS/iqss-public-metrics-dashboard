@@ -1,0 +1,83 @@
+- name: Our year in numbers
+  slug: overview
+  width: wide
+  columns:
+    - size: full
+      widgets:
+        - type: html
+          hide-header: true
+          css-class: iqss-frameless
+          source: |
+            <div class="iqss-page-header">
+              <h1>Our year in numbers</h1>
+              <p>Budget overview and highlighted metrics from our work this year.</p>
+              <p class="iqss-disclaimer">All values on this demo site are fake and static.</p>
+            </div>
+
+        - type: custom-api
+          title: Highlights
+          css-class: iqss-card iqss-card-primary
+          cache: 24h
+          url: http://localhost:8080/assets/data/overview.json
+          template: |
+            <div class="iqss-kpi-grid">
+              {{ range .JSON.Array "kpis" }}
+                <div class="iqss-kpi-card iqss-kpi-card--{{ .String "accent" }}">
+                  <div class="iqss-kpi-label">{{ .String "label" }}</div>
+                  <div class="iqss-kpi-value">
+                    {{ $fmt := .String "format" }}
+                    {{ if eq $fmt "int" }}
+                      {{ .Int "value" | formatNumber }}
+                    {{ else }}
+                      {{ formatPriceWithPrecision 1 (.Float "value") }}
+                    {{ end }}
+                    <span class="iqss-kpi-unit">{{ .String "unit" }}</span>
+                  </div>
+                  {{ if .Exists "delta_pct" }}
+                    {{ $d := .Float "delta_pct" }}
+                    <div class="iqss-kpi-delta {{ if ge $d 0.0 }}color-positive{{ else }}color-negative{{ end }}">
+                      {{ if ge $d 0.0 }}+{{ end }}{{ printf "%.1f" $d }}%
+                    </div>
+                  {{ end }}
+                </div>
+              {{ end }}
+            </div>
+            <div class="iqss-updated">Last updated: {{ .JSON.String "updated" }}</div>
+
+        - type: split-column
+          max-columns: 2
+          widgets:
+            - type: custom-api
+              title: Quarterly snapshot
+              css-class: iqss-card iqss-card-secondary
+              cache: 24h
+              url: http://localhost:8080/assets/data/overview.json
+              template: |
+                {{ $max := .JSON.Int "trend_max" | toFloat }}
+                <ul class="iqss-trend-list">
+                  {{ range .JSON.Array "trend" }}
+                    {{ $v := .Int "value" | toFloat }}
+                    {{ $pct := mul (div $v $max) 100 }}
+                    <li class="iqss-trend-item">
+                      <div class="iqss-trend-label">{{ .String "label" }}</div>
+                      <div class="iqss-trend-bar">
+                        <div class="iqss-trend-bar-fill" style="width: {{ printf "%.0f" $pct }}%;"></div>
+                      </div>
+                      <div class="iqss-trend-value">{{ .Int "value" | formatNumber }}</div>
+                    </li>
+                  {{ end }}
+                </ul>
+                <div class="iqss-updated">Last updated: {{ .JSON.String "updated" }}</div>
+
+            - type: custom-api
+              title: Notes
+              css-class: iqss-card iqss-card-tertiary
+              cache: 24h
+              url: http://localhost:8080/assets/data/overview.json
+              template: |
+                <ul class="iqss-notes">
+                  {{ range .JSON.Array "notes" }}
+                    <li>{{ .String "text" }}</li>
+                  {{ end }}
+                </ul>
+                <div class="iqss-updated">Last updated: {{ .JSON.String "updated" }}</div>

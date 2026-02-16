@@ -1,0 +1,26 @@
+{
+  "updated": "2026-02-01",
+  "kpis": [
+    { "label": "Operating budget ($M)", "value": 12.4, "unit": "M", "format": "float", "accent": "primary", "delta_pct": 2.7 },
+    { "label": "Staff FTE", "value": 86, "unit": "", "format": "int", "accent": "secondary", "delta_pct": 1.2 },
+    { "label": "Researchers served", "value": 1420, "unit": "", "format": "int", "accent": "primary", "delta_pct": 6.4 },
+    { "label": "Consultations", "value": 980, "unit": "", "format": "int", "accent": "secondary", "delta_pct": 4.1 },
+    { "label": "Workshops delivered", "value": 74, "unit": "", "format": "int", "accent": "primary", "delta_pct": 8.0 },
+    { "label": "Dataverse downloads", "value": 3250000, "unit": "", "format": "int", "accent": "secondary", "delta_pct": 12.9 },
+    { "label": "Cluster node-hours", "value": 910000, "unit": "", "format": "int", "accent": "primary", "delta_pct": 22.0 },
+    { "label": "Helpdesk tickets", "value": 1320, "unit": "", "format": "int", "accent": "tertiary", "delta_pct": -3.4 }
+  ],
+  "trend_max": 1450,
+  "trend": [
+    { "label": "FY26 Q1", "value": 1140 },
+    { "label": "FY26 Q2", "value": 1280 },
+    { "label": "FY26 Q3", "value": 1310 },
+    { "label": "FY26 Q4", "value": 1450 }
+  ],
+  "notes": [
+    { "text": "All metrics on this demo are fake and static (hard-coded JSON files served by a local container)." },
+    { "text": "The goal is to compare Glance widget/layout/theming ergonomics to the legacy IQSS metrics dashboard." },
+    { "text": "Update date is also fake: 2026-02-01." }
+  ]
+}
+

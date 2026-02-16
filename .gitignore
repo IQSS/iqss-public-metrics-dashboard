@@ -1,0 +1,15 @@
+# Glance example dashboard repo
+
+# local reference repos used to copy styles/images
+/_reference/
+
+# OS/editor junk
+.DS_Store
+
+# local env overrides
+.env.local
+
+# downloaded glance binaries / archives (keep local)
+/glance
+/glance-*.tar.gz
+/glance-*.zip

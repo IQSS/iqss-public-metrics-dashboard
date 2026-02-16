@@ -1,0 +1,26 @@
+{
+  "updated": "2026-02-01",
+  "kpis": [
+    { "label": "Events hosted", "value": 92, "unit": "", "format": "int", "accent": "primary" },
+    { "label": "Attendees", "value": 8100, "unit": "", "format": "int", "accent": "secondary" },
+    { "label": "Workshops", "value": 36, "unit": "", "format": "int", "accent": "primary" },
+    { "label": "Publications", "value": 64, "unit": "", "format": "int", "accent": "tertiary" },
+    { "label": "Partner institutions", "value": 28, "unit": "", "format": "int", "accent": "primary" },
+    { "label": "Grant proposals supported", "value": 18, "unit": "", "format": "int", "accent": "secondary" }
+  ],
+  "trend_max": 18,
+  "trend": [
+    { "label": "Sep", "value": 12 },
+    { "label": "Oct", "value": 14 },
+    { "label": "Nov", "value": 13 },
+    { "label": "Dec", "value": 16 },
+    { "label": "Jan", "value": 18 },
+    { "label": "Feb", "value": 15 }
+  ],
+  "notes": [
+    { "text": "This page is a placeholder example using fake counts for events and program activity." },
+    { "text": "You can evolve the JSON schema to include program-level breakdowns, maps, or publication lists." },
+    { "text": "If you need richer visuals, consider embedding a static chart image or an iframe to a chart service." }
+  ]
+}
+

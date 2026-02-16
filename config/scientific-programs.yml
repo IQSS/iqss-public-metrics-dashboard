@@ -1,0 +1,242 @@
+- name: Scientific Programs
+  slug: scientific-programs
+  width: wide
+  columns:
+    - size: full
+      widgets:
+        - type: html
+          hide-header: true
+          css-class: iqss-frameless
+          source: |
+            <div class="iqss-page-header">
+              <h1>Scientific Programs</h1>
+              <p>
+                IQSS is home to the Center for Geographic Analysis and other faculty-led programs focused on
+                qualitative and quantitative social science topics.
+              </p>
+              <p class="iqss-disclaimer">All values on this demo site are fake and static.</p>
+            </div>
+
+        - type: custom-api
+          title: Highlights
+          css-class: iqss-card iqss-card-primary
+          cache: 24h
+          url: http://localhost:8080/assets/data/scientific-programs.json
+          template: |
+            <div class="iqss-kpi-grid">
+              {{ range .JSON.Array "kpis" }}
+                <div class="iqss-kpi-card iqss-kpi-card--{{ .String "accent" }}">
+                  <div class="iqss-kpi-label">{{ .String "label" }}</div>
+                  <div class="iqss-kpi-value">
+                    {{ $fmt := .String "format" }}
+                    {{ if eq $fmt "int" }}
+                      {{ .Int "value" | formatNumber }}
+                    {{ else }}
+                      {{ formatPriceWithPrecision 1 (.Float "value") }}
+                    {{ end }}
+                    <span class="iqss-kpi-unit">{{ .String "unit" }}</span>
+                  </div>
+                </div>
+              {{ end }}
+            </div>
+            <div class="iqss-updated">Last updated: {{ .JSON.String "updated" }}</div>
+
+        - type: split-column
+          max-columns: 2
+          widgets:
+            - type: custom-api
+              title: Virtual help desk requests (Line, last 12 months)
+              css-class: iqss-card iqss-card-primary
+              cache: 24h
+              url: http://localhost:8080/assets/data/graphs/sp-cga-requests-line.json
+              template: &iqss_graph_template |
+                <div class="iqss-chart-wrap">
+                  {{ $type := .JSON.String "type" }}
+
+                  {{ if or (eq $type "line") (eq $type "area") }}
+                    {{ $pts := .JSON.Array "points" }}
+                    {{ $n := len $pts }}
+
+                    {{ if lt $n 2 }}
+                      <p class="iqss-empty">Not enough data to render this chart.</p>
+                    {{ else }}
+                      {{ $max := 0 }}
+                      {{ range $pts }}
+                        {{ $v := .Int "value" }}
+                        {{ if gt $v $max }}{{ $max = $v }}{{ end }}
+                      {{ end }}
+
+                      {{ $maxf := toFloat $max }}
+                      {{ $w := sub $n 1 }}
+
+                      <div class="iqss-graph iqss-graph--{{ $type }}">
+                        <div class="iqss-graph-plot">
+                          <svg
+                            class="iqss-graph-svg"
+                            viewBox="0 0 {{ $w }} 100"
+                            preserveAspectRatio="none"
+                            role="img"
+                            aria-label="{{ .JSON.String "aria_label" }}"
+                          >
+                            <g class="iqss-graph-grid" aria-hidden="true">
+                              <line x1="0" y1="10" x2="{{ $w }}" y2="10"></line>
+                              <line x1="0" y1="30" x2="{{ $w }}" y2="30"></line>
+                              <line x1="0" y1="50" x2="{{ $w }}" y2="50"></line>
+                              <line x1="0" y1="70" x2="{{ $w }}" y2="70"></line>
+                              <line x1="0" y1="90" x2="{{ $w }}" y2="90"></line>
+                            </g>
+
+                            {{ if eq $type "area" }}
+                              <polygon
+                                class="iqss-graph-area"
+                                points="0,90 {{ range $i, $p := $pts }}{{ $vf := toFloat ($p.Int "value") }}{{ $y := sub 90 (mul (div $vf $maxf) 80) }}{{ printf "%d,%.2f " $i $y }}{{ end }}{{ $w }},90"
+                              ></polygon>
+                            {{ end }}
+
+                            <polyline
+                              class="iqss-graph-line"
+                              points="{{ range $i, $p := $pts }}{{ $vf := toFloat ($p.Int "value") }}{{ $y := sub 90 (mul (div $vf $maxf) 80) }}{{ printf "%d,%.2f " $i $y }}{{ end }}"
+                            ></polyline>
+                          </svg>
+                        </div>
+
+                        <div class="iqss-graph-x" style="grid-template-columns: repeat({{ $n }}, 1fr);">
+                          {{ range $pts }}
+                            <span>{{ .String "label" }}</span>
+                          {{ end }}
+                        </div>
+                      </div>
+                    {{ end }}
+
+                  {{ else if eq $type "bar" }}
+                    {{ $bars := .JSON.Array "bars" }}
+                    {{ $max := 0 }}
+                    {{ range $bars }}
+                      {{ $v := .Int "value" }}
+                      {{ if gt $v $max }}{{ $max = $v }}{{ end }}
+                    {{ end }}
+                    {{ $maxf := toFloat $max }}
+
+                    <div class="iqss-graph iqss-graph--bar" role="img" aria-label="{{ .JSON.String "aria_label" }}">
+                      <ul class="iqss-barlist">
+                        {{ range $bars }}
+                          {{ $v := .Int "value" }}
+                          {{ $pct := mul (div (toFloat $v) $maxf) 100 }}
+                          <li class="iqss-barlist-item">
+                            <div class="iqss-barlist-label">{{ .String "label" }}</div>
+                            <div class="iqss-barlist-bar">
+                              <div class="iqss-barlist-fill" style="width: {{ printf "%.1f" $pct }}%;"></div>
+                            </div>
+                            <div class="iqss-barlist-value">{{ $v | formatNumber }}</div>
+                          </li>
+                        {{ end }}
+                      </ul>
+                    </div>
+
+                  {{ else if eq $type "pie" }}
+                    {{ $slices := .JSON.Array "slices" }}
+                    {{ $total := 0.0 }}
+                    {{ range $slices }}
+                      {{ $total = add $total (toFloat (.Int "value")) }}
+                    {{ end }}
+                    {{ $cum := 0.0 }}
+                    {{ $grad := "" }}
+                    {{ range $i, $s := $slices }}
+                      {{ $v := toFloat ($s.Int "value") }}
+                      {{ $pct := mul (div $v $total) 100.0 }}
+                      {{ $start := $cum }}
+                      {{ $end := add $cum $pct }}
+                      {{ $cum = $end }}
+                      {{ $seg := printf "%s %.2f%% %.2f%%" ($s.String "color") $start $end }}
+                      {{ if eq $i 0 }}{{ $grad = $seg }}{{ else }}{{ $grad = concat $grad ", " $seg }}{{ end }}
+                    {{ end }}
+
+                    <div class="iqss-graph iqss-graph--pie">
+                      <div class="iqss-pie-grid">
+                        <div
+                          class="iqss-pie"
+                          style="--iqss-pie-gradient: conic-gradient({{ $grad }});"
+                          role="img"
+                          aria-label="{{ .JSON.String "aria_label" }}"
+                        ></div>
+
+                        <ul class="iqss-pie-legend">
+                          {{ range $i, $s := $slices }}
+                            {{ $v := $s.Int "value" }}
+                            {{ $pct := mul (div (toFloat $v) $total) 100.0 }}
+                            <li class="iqss-pie-legend-item">
+                              <span class="iqss-swatch" style="background: {{ $s.String "color" }};"></span>
+                              <span class="iqss-pie-legend-label">{{ $s.String "label" }}</span>
+                              <span class="iqss-pie-legend-value">{{ $v | formatNumber }}</span>
+                              <span class="iqss-pie-legend-pct">{{ printf "%.0f" $pct }}%</span>
+                            </li>
+                          {{ end }}
+                        </ul>
+                      </div>
+                    </div>
+
+                  {{ else }}
+                    <p class="iqss-empty">Unknown graph type.</p>
+                  {{ end }}
+                </div>
+            - type: custom-api
+              title: Training registrations (Area, last 12 months)
+              css-class: iqss-card iqss-card-primary
+              cache: 24h
+              url: http://localhost:8080/assets/data/graphs/sp-cga-training-area.json
+              template: *iqss_graph_template
+
+        - type: split-column
+          max-columns: 2
+          widgets:
+            - type: custom-api
+              title: Top GIS license requests (Bar)
+              css-class: iqss-card iqss-card-primary
+              cache: 24h
+              url: http://localhost:8080/assets/data/graphs/sp-gis-license-requests-bar.json
+              template: *iqss_graph_template
+
+            - type: custom-api
+              title: License requests by status (Pie)
+              css-class: iqss-card iqss-card-primary
+              cache: 24h
+              url: http://localhost:8080/assets/data/graphs/sp-gis-license-status-pie.json
+              template: *iqss_graph_template
+
+        - type: split-column
+          max-columns: 2
+          widgets:
+            - type: custom-api
+              title: Monthly events
+              css-class: iqss-card iqss-card-secondary
+              cache: 24h
+              url: http://localhost:8080/assets/data/scientific-programs.json
+              template: |
+                {{ $max := .JSON.Int "trend_max" | toFloat }}
+                <ul class="iqss-trend-list">
+                  {{ range .JSON.Array "trend" }}
+                    {{ $v := .Int "value" | toFloat }}
+                    {{ $pct := mul (div $v $max) 100 }}
+                    <li class="iqss-trend-item">
+                      <div class="iqss-trend-label">{{ .String "label" }}</div>
+                      <div class="iqss-trend-bar">
+                        <div class="iqss-trend-bar-fill" style="width: {{ printf "%.0f" $pct }}%;"></div>
+                      </div>
+                      <div class="iqss-trend-value">{{ .Int "value" | formatNumber }}</div>
+                    </li>
+                  {{ end }}
+                </ul>
+                <div class="iqss-updated">Last updated: {{ .JSON.String "updated" }}</div>
+
+            - type: custom-api
+              title: Notes
+              css-class: iqss-card iqss-card-tertiary
+              cache: 24h
+              url: http://localhost:8080/assets/data/scientific-programs.json
+              template: |
+                <ul class="iqss-notes">
+                  {{ range .JSON.Array "notes" }}
+                    <li>{{ .String "text" }}</li>
+                  {{ end }}
+                </ul>
+                <div class="iqss-updated">Last updated: {{ .JSON.String "updated" }}</div>

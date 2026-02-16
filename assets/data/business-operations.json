@@ -1,0 +1,26 @@
+{
+  "updated": "2026-02-01",
+  "kpis": [
+    { "label": "Invoices processed", "value": 3840, "unit": "", "format": "int", "accent": "primary" },
+    { "label": "Purchase orders created", "value": 1260, "unit": "", "format": "int", "accent": "secondary" },
+    { "label": "Vendors onboarded", "value": 94, "unit": "", "format": "int", "accent": "primary" },
+    { "label": "Median approval time", "value": 2.3, "unit": "days", "format": "float", "accent": "tertiary" },
+    { "label": "Spend managed ($M)", "value": 8.7, "unit": "M", "format": "float", "accent": "secondary" },
+    { "label": "Budget utilization", "value": 78.4, "unit": "%", "format": "float", "accent": "primary" }
+  ],
+  "trend_max": 360,
+  "trend": [
+    { "label": "Sep", "value": 280 },
+    { "label": "Oct", "value": 310 },
+    { "label": "Nov", "value": 295 },
+    { "label": "Dec", "value": 330 },
+    { "label": "Jan", "value": 360 },
+    { "label": "Feb", "value": 340 }
+  ],
+  "notes": [
+    { "text": "Numbers are illustrative only and do not represent real IQSS operations." },
+    { "text": "This page shows how a KPI grid + simple bar trend can be done with Glance custom-api widgets." },
+    { "text": "For real data, replace the fake JSON service with a real API endpoint (or generate JSON during CI)." }
+  ]
+}
+
