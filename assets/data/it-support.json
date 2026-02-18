@@ -1,0 +1,26 @@
+{
+  "updated": "2026-02-01",
+  "kpis": [
+    { "label": "Tickets received", "value": 1320, "unit": "", "format": "int", "accent": "primary", "delta_pct": -3.4 },
+    { "label": "Tickets resolved", "value": 1275, "unit": "", "format": "int", "accent": "secondary", "delta_pct": -2.1 },
+    { "label": "Median resolution time", "value": 14.5, "unit": "hours", "format": "float", "accent": "tertiary", "delta_pct": -6.0 },
+    { "label": "Devices supported", "value": 620, "unit": "", "format": "int", "accent": "primary", "delta_pct": 1.5 },
+    { "label": "OS upgrades", "value": 148, "unit": "", "format": "int", "accent": "secondary" },
+    { "label": "CSAT", "value": 4.6, "unit": "/5", "format": "float", "accent": "primary", "delta_pct": 2.2 }
+  ],
+  "trend_max": 260,
+  "trend": [
+    { "label": "Sep", "value": 210 },
+    { "label": "Oct", "value": 240 },
+    { "label": "Nov", "value": 230 },
+    { "label": "Dec", "value": 250 },
+    { "label": "Jan", "value": 260 },
+    { "label": "Feb", "value": 245 }
+  ],
+  "notes": [
+    { "text": "This is demo data for comparing Glance to the legacy dashboard." },
+    { "text": "The trend widget is a CSS-only bar chart, not a JS charting library." },
+    { "text": "For a real dashboard, you might connect to a helpdesk system API (ServiceNow/Jira/etc.)." }
+  ]
+}
+

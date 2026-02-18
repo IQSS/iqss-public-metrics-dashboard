@@ -1,0 +1,18 @@
+{
+  "type": "line",
+  "aria_label": "Virtual help desk requests (fake data)",
+  "points": [
+    { "label": "Mar", "value": 92 },
+    { "label": "Apr", "value": 88 },
+    { "label": "May", "value": 95 },
+    { "label": "Jun", "value": 101 },
+    { "label": "Jul", "value": 110 },
+    { "label": "Aug", "value": 98 },
+    { "label": "Sep", "value": 104 },
+    { "label": "Oct", "value": 120 },
+    { "label": "Nov", "value": 117 },
+    { "label": "Dec", "value": 130 },
+    { "label": "Jan", "value": 142 },
+    { "label": "Feb", "value": 125 }
+  ]
+}

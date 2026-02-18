@@ -1,0 +1,18 @@
+{
+  "type": "area",
+  "aria_label": "Training registrations (fake data)",
+  "points": [
+    { "label": "Mar", "value": 45 },
+    { "label": "Apr", "value": 52 },
+    { "label": "May", "value": 60 },
+    { "label": "Jun", "value": 58 },
+    { "label": "Jul", "value": 64 },
+    { "label": "Aug", "value": 70 },
+    { "label": "Sep", "value": 72 },
+    { "label": "Oct", "value": 68 },
+    { "label": "Nov", "value": 75 },
+    { "label": "Dec", "value": 78 },
+    { "label": "Jan", "value": 85 },
+    { "label": "Feb", "value": 82 }
+  ]
+}

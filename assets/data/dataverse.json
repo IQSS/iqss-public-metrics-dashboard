@@ -1,0 +1,26 @@
+{
+  "updated": "2026-02-01",
+  "kpis": [
+    { "label": "Installations (worldwide)", "value": 112, "unit": "", "format": "int", "accent": "primary", "delta_pct": 3.6 },
+    { "label": "Datasets published", "value": 28500, "unit": "", "format": "int", "accent": "secondary", "delta_pct": 11.1 },
+    { "label": "Files stored", "value": 910000, "unit": "", "format": "int", "accent": "primary", "delta_pct": 8.3 },
+    { "label": "Downloads", "value": 3250000, "unit": "", "format": "int", "accent": "secondary", "delta_pct": 12.9 },
+    { "label": "API requests", "value": 1840000, "unit": "", "format": "int", "accent": "tertiary" },
+    { "label": "Median ingest time", "value": 3.2, "unit": "min", "format": "float", "accent": "primary", "delta_pct": -4.7 }
+  ],
+  "trend_max": 640000,
+  "trend": [
+    { "label": "Sep", "value": 480000 },
+    { "label": "Oct", "value": 520000 },
+    { "label": "Nov", "value": 510000 },
+    { "label": "Dec", "value": 560000 },
+    { "label": "Jan", "value": 640000 },
+    { "label": "Feb", "value": 610000 }
+  ],
+  "notes": [
+    { "text": "All numbers are fake. Replace the JSON with real Dataverse telemetry when ready." },
+    { "text": "Glance custom-api can consume any JSON that is reachable from the server container." },
+    { "text": "This demo keeps it simple: a KPI grid + a 6-point trend series." }
+  ]
+}
+

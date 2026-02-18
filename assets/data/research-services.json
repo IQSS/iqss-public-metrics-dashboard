@@ -1,0 +1,26 @@
+{
+  "updated": "2026-02-01",
+  "kpis": [
+    { "label": "Projects supported", "value": 128, "unit": "", "format": "int", "accent": "primary", "delta_pct": 5.2 },
+    { "label": "Consultations", "value": 980, "unit": "", "format": "int", "accent": "secondary", "delta_pct": 4.1 },
+    { "label": "Training sessions", "value": 44, "unit": "", "format": "int", "accent": "primary", "delta_pct": 9.4 },
+    { "label": "Training attendees", "value": 1140, "unit": "", "format": "int", "accent": "secondary", "delta_pct": 7.6 },
+    { "label": "Satisfaction", "value": 93.6, "unit": "%", "format": "float", "accent": "tertiary" },
+    { "label": "Median time to first response", "value": 1.8, "unit": "days", "format": "float", "accent": "primary", "delta_pct": -3.1 }
+  ],
+  "trend_max": 220,
+  "trend": [
+    { "label": "Sep", "value": 160 },
+    { "label": "Oct", "value": 180 },
+    { "label": "Nov", "value": 175 },
+    { "label": "Dec", "value": 190 },
+    { "label": "Jan", "value": 220 },
+    { "label": "Feb", "value": 205 }
+  ],
+  "notes": [
+    { "text": "Use this layout to compare how Glance handles a metrics-style dashboard." },
+    { "text": "Delta percentages are fake and only meant to show positive/negative styling." },
+    { "text": "The bar chart here is rendered with plain HTML + CSS from a static JSON series." }
+  ]
+}
+

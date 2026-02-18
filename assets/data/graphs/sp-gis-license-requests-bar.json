@@ -1,0 +1,16 @@
+{
+  "type": "bar",
+  "aria_label": "Top GIS license requests (fake data)",
+  "bars": [
+    { "label": "ArcGIS Pro", "value": 220 },
+    { "label": "ArcGIS Online", "value": 180 },
+    { "label": "ArcGIS Desktop", "value": 160 },
+    { "label": "ENVI", "value": 120 },
+    { "label": "ERDAS Imagine", "value": 110 },
+    { "label": "Global Mapper", "value": 95 },
+    { "label": "Mapbox Studio", "value": 88 },
+    { "label": "GeoDa", "value": 80 },
+    { "label": "Tableau (Mapping)", "value": 72 },
+    { "label": "Other", "value": 60 }
+  ]
+}
