@@ -87,6 +87,17 @@ a:hover {
   width: 100%;
 }
 
+/* Static-export support
+ *
+ * In live Glance, JS wraps masonry children into `.masonry-column` elements.
+ * In the static snapshot, widgets can be direct children of `.masonry`, which
+ * makes them shrink-to-content in flex layout (e.g. squished "Notes" cards).
+ */
+.masonry > .widget {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
 /* Equal-width desktop tabs (avoid impacting the mobile nav list). */
 .header .nav .nav-item {
   flex: 1 1 0;
